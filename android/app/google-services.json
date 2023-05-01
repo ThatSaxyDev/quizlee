@@ -1,0 +1,54 @@
+{
+  "project_info": {
+    "project_number": "592355113428",
+    "project_id": "quizlee-692a1",
+    "storage_bucket": "quizlee-692a1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:592355113428:android:a7c0e6725479160f2f3e41",
+        "android_client_info": {
+          "package_name": "app.kiishidart.quizlee"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "592355113428-g86iso44m5fuvd2pjki766f5gdn24pfs.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "app.kiishidart.quizlee",
+            "certificate_hash": "ca26560740d0472113c1786109bcc24c617f24b8"
+          }
+        },
+        {
+          "client_id": "592355113428-7h2ifi1fl3aa32rourp3uleedr2qfgl9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBe0K2V4eyQ1hvM9u023PudJsnQhgtADjE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "592355113428-7h2ifi1fl3aa32rourp3uleedr2qfgl9.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "592355113428-ren13hc6pujpotl3h2h5u7gsjc6bgm36.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "app.kiishidart.quizlee"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
