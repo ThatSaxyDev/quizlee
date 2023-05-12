@@ -32,11 +32,6 @@ class LoginScreen extends ConsumerWidget {
                     item: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        SizedBox(
-                          width: 30.w,
-                          child: Image.asset('google'.png),
-                        ),
-                        15.sbW,
                         Text(
                           'Continue With Google',
                           style: TextStyle(

@@ -2,7 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:quizlee/features/auth/views/login_screen.dart';
 import 'package:quizlee/features/base_nav/dummy_home.dart';
 import 'package:quizlee/features/base_nav/dummy_home2.dart';
+import 'package:quizlee/features/home/views/home_view.dart';
+import 'package:quizlee/features/quiz/views/create_quiz_view.dart';
 import 'package:routemaster/routemaster.dart';
+
+void nav({required String destination, required BuildContext context}) {
+  Routemaster.of(context).push('/create-quiz');
+}
 
 //! these routes would be desplayed when the user is logged out
 final loggedOutRoute = RouteMap(
@@ -20,7 +26,10 @@ final loggedOutRoute = RouteMap(
 final loggedInRoute = RouteMap(
   routes: {
     '/': (_) => const MaterialPage(
-          child: DummyHome(),
+          child: HomeView(),
+        ),
+    '/create-quiz': (_) => const MaterialPage(
+          child: CreateQuizView(),
         ),
     // '/product-details/:productId': (routeData) => MaterialPage(
     //       child: BuyerProductDetailsView(

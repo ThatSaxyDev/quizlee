@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:routemaster/routemaster.dart';
 
 void goBack(BuildContext context) {
   FocusManager.instance.primaryFocus?.unfocus();
-  Navigator.of(context).pop();
+  Routemaster.of(context).pop();
 }
 
 //! nav function
