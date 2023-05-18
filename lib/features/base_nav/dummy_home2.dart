@@ -6,7 +6,7 @@ class DummyHome2 extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return Scaffold(
+    return const Scaffold(
       body: Center(
         child: Text('datadata'),
       ),

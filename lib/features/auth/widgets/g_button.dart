@@ -64,7 +64,7 @@ class GButton extends ConsumerWidget {
           ),
           elevation: 0,
           shadowColor: Colors.transparent,
-          backgroundColor: currentTheme.backgroundColor,
+          backgroundColor: currentTheme.colorScheme.background,
           padding: EdgeInsets.symmetric(horizontal: padding),
         ),
         child: Center(

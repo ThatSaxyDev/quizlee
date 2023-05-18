@@ -1,13 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:phosphor_flutter/phosphor_flutter.dart';
 import 'package:quizlee/features/auth/controller/auth_controller.dart';
 import 'package:quizlee/features/auth/widgets/g_button.dart';
 import 'package:quizlee/utils/loader.dart';
-import 'package:quizlee/utils/string_extensions.dart';
 import 'package:quizlee/utils/widget_extensions.dart';
-import 'package:routemaster/routemaster.dart';
 
 import '../../../theme/palette.dart';
 

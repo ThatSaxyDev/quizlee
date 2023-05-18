@@ -4,10 +4,11 @@ import 'package:quizlee/features/base_nav/dummy_home.dart';
 import 'package:quizlee/features/base_nav/dummy_home2.dart';
 import 'package:quizlee/features/home/views/home_view.dart';
 import 'package:quizlee/features/quiz/views/create_quiz_view.dart';
+import 'package:quizlee/features/quiz/views/quiz_questions_view.dart';
 import 'package:routemaster/routemaster.dart';
 
 void nav({required String destination, required BuildContext context}) {
-  Routemaster.of(context).push('/create-quiz');
+  Routemaster.of(context).push(destination);
 }
 
 //! these routes would be desplayed when the user is logged out
@@ -30,6 +31,16 @@ final loggedInRoute = RouteMap(
         ),
     '/create-quiz': (_) => const MaterialPage(
           child: CreateQuizView(),
+        ),
+    '/create-quiz/quiz-questions/:quizId': (routeData) => MaterialPage(
+          child: QuizQuestionsView(
+            quizId: routeData.pathParameters['quizId']!,
+          ),
+        ),
+    '/quiz-questions/:quizId': (routeData) => MaterialPage(
+          child: QuizQuestionsView(
+            quizId: routeData.pathParameters['quizId']!,
+          ),
         ),
     // '/product-details/:productId': (routeData) => MaterialPage(
     //       child: BuyerProductDetailsView(

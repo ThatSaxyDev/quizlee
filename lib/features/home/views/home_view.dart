@@ -1,15 +1,17 @@
-import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:quizlee/features/auth/controller/auth_controller.dart';
 import 'package:quizlee/features/home/widgets/upcoming_game_card.dart';
+import 'package:quizlee/features/quiz/providers/quiz_providers.dart';
 import 'package:quizlee/models/user_model.dart';
 import 'package:quizlee/router.dart';
 import 'package:quizlee/theme/palette.dart';
 import 'package:quizlee/utils/app_constants.dart';
 import 'package:quizlee/utils/app_texts.dart';
+import 'package:quizlee/utils/error_text.dart';
+import 'package:quizlee/utils/loader.dart';
 import 'package:quizlee/utils/widget_extensions.dart';
 import 'package:quizlee/utils/widgets/click_button.dart';
 import 'package:quizlee/utils/widgets/myicon.dart';
@@ -33,6 +35,7 @@ class _HomeViewState extends ConsumerState<HomeView> {
 
   @override
   Widget build(BuildContext context) {
+    final quizzesStream = ref.watch(getAllQuizzesProvider);
     UserModel user = ref.watch(userProvider)!;
     List<String> names = user.name.split(' ');
     String firstName = names[0];
@@ -155,11 +158,24 @@ class _HomeViewState extends ConsumerState<HomeView> {
                       12.sbH,
 
                       //! upcoming game cards
-                      Column(
-                        children: List.generate(
-                          3,
-                          (index) => UpcomingGameCard(),
-                        ),
+                      quizzesStream.when(
+                        data: (quizzes) {
+                          if (quizzes.isEmpty) {
+                            return const ErrorText(error: 'No quiz');
+                          }
+
+                          return Column(
+                            children: List.generate(
+                              quizzes.length,
+                              (index) => UpcomingGameCard(
+                                quiz: quizzes[index],
+                              ),
+                            ),
+                          );
+                        },
+                        error: (error, stactrace) =>
+                            ErrorText(error: error.toString()),
+                        loading: () => const Loader(),
                       ),
 
                       //! space

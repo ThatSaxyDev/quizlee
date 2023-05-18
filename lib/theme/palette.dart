@@ -42,6 +42,8 @@ class Pallete {
   static const darkBlueGrey = Color(0xff090912);
   static const buttonShadow = Color(0xff3D3D99);
   static const upcomingblue = Color(0xff141421);
+  static const answerBorder = Color(0xff22222E);
+  static const greenn = Color(0xff86EFAC);
 
   // Themes
   static var darkModeAppTheme = ThemeData.dark().copyWith(
@@ -60,32 +62,31 @@ class Pallete {
     drawerTheme: const DrawerThemeData(
       backgroundColor: drawerColor,
     ),
-    primaryColor: blueColor,
-    backgroundColor:
-        drawerColor, // will be used as alternative background color
-    canvasColor: greyColor,
+    primaryColor: blueColor, // will be used as alternative background color
+    canvasColor: greyColor, colorScheme: ColorScheme.fromSwatch(),
   );
 
   static var lightModeAppTheme = ThemeData.light().copyWith(
-      // textTheme: GoogleFonts.spaceGroteskTextTheme(),
-      // textTheme: ThemeData.light().textTheme.apply(
-      //       fontFamily: 'Sk-Modernist',
-      //     ),
-      scaffoldBackgroundColor: whiteColor,
-      cardColor: greyColor,
-      appBarTheme: const AppBarTheme(
-        backgroundColor: whiteColor,
-        elevation: 0,
-        iconTheme: IconThemeData(
-          color: blackColor,
-        ),
-      ),
-      drawerTheme: const DrawerThemeData(
-        backgroundColor: whiteColor,
-      ),
-      primaryColor: blueColor,
+    // textTheme: GoogleFonts.spaceGroteskTextTheme(),
+    // textTheme: ThemeData.light().textTheme.apply(
+    //       fontFamily: 'Sk-Modernist',
+    //     ),
+    scaffoldBackgroundColor: whiteColor,
+    cardColor: greyColor,
+    appBarTheme: const AppBarTheme(
       backgroundColor: whiteColor,
-      canvasColor: blackColor);
+      elevation: 0,
+      iconTheme: IconThemeData(
+        color: blackColor,
+      ),
+    ),
+    drawerTheme: const DrawerThemeData(
+      backgroundColor: whiteColor,
+    ),
+    primaryColor: blueColor,
+    canvasColor: blackColor,
+    colorScheme: ColorScheme.fromSwatch(),
+  );
 }
 
 class ThemeNotifier extends StateNotifier<ThemeData> {
