@@ -9,6 +9,7 @@ import 'package:quizlee/theme/palette.dart';
 import 'package:quizlee/utils/error_text.dart';
 import 'package:quizlee/utils/loader.dart';
 import 'package:quizlee/utils/nav.dart';
+import 'package:quizlee/utils/string_extensions.dart';
 import 'package:quizlee/utils/utils.dart';
 import 'package:quizlee/utils/widget_extensions.dart';
 import 'package:quizlee/utils/widgets/click_button.dart';
@@ -60,42 +61,37 @@ class ConfirmQuizBottomSheet extends ConsumerWidget {
                     24.sbH,
 
                     //! image
-                    Container(
-                      height: 174.h,
-                      width: double.infinity,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(12.r),
-                      ),
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(12.r),
-                        child: CachedNetworkImage(
-                          fit: BoxFit.cover,
-                          imageUrl: quiz.image,
-                          placeholder: (context, url) => Container(
-                            decoration: BoxDecoration(
-                              gradient: LinearGradient(
-                                colors: [
-                                  Colors.black12.withOpacity(0.1),
-                                  Colors.black12.withOpacity(0.1),
-                                  Colors.black26,
-                                  Colors.black26,
-                                ],
-                                begin: Alignment.topLeft,
-                                end: Alignment.bottomRight,
-                              ),
-                              borderRadius: BorderRadius.circular(15.r),
+                    ClipRRect(
+                      borderRadius: BorderRadius.circular(12.r),
+                      child: CachedNetworkImage(
+                        height: 174.h,
+                        width: double.infinity,
+                        fit: BoxFit.cover,
+                        imageUrl: quiz.image,
+                        placeholder: (context, url) => Container(
+                          decoration: BoxDecoration(
+                            gradient: LinearGradient(
+                              colors: [
+                                Colors.black12.withOpacity(0.1),
+                                Colors.black12.withOpacity(0.1),
+                                Colors.black26,
+                                Colors.black26,
+                              ],
+                              begin: Alignment.topLeft,
+                              end: Alignment.bottomRight,
                             ),
-                          )
-                              .animate(
-                                  onPlay: (controller) => controller.repeat())
-                              .shimmer(duration: 1200.ms),
-                          errorWidget: (context, url, error) => Container(
-                            color: Pallete.darkBlueGrey.withOpacity(0.1),
-                            child: Center(
-                              child: Icon(
-                                Icons.error,
-                                size: 30.sp,
-                              ),
+                            borderRadius: BorderRadius.circular(15.r),
+                          ),
+                        )
+                            .animate(
+                                onPlay: (controller) => controller.repeat())
+                            .shimmer(duration: 1200.ms),
+                        errorWidget: (context, url, error) => Container(
+                          color: Pallete.darkBlueGrey.withOpacity(0.1),
+                          child: Center(
+                            child: Icon(
+                              Icons.error,
+                              size: 30.sp,
                             ),
                           ),
                         ),
@@ -193,8 +189,46 @@ class ConfirmQuizBottomSheet extends ConsumerWidget {
                             radius: 66.w,
                             backgroundColor: Pallete.greenn,
                             child: CircleAvatar(
-                              backgroundImage: NetworkImage(quiz.image),
+                              // backgroundImage: NetworkImage(quiz.image),
                               radius: 56.w,
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(56.r),
+                                child: CachedNetworkImage(
+                                  width: 112.w,
+                                  fit: BoxFit.cover,
+                                  imageUrl: quiz.image,
+                                  placeholder: (context, url) => Container(
+                                    decoration: BoxDecoration(
+                                      gradient: LinearGradient(
+                                        colors: [
+                                          Colors.black12.withOpacity(0.1),
+                                          Colors.black12.withOpacity(0.1),
+                                          Colors.black26,
+                                          Colors.black26,
+                                        ],
+                                        begin: Alignment.topLeft,
+                                        end: Alignment.bottomRight,
+                                      ),
+                                      borderRadius: BorderRadius.circular(15.r),
+                                    ),
+                                  )
+                                      .animate(
+                                          onPlay: (controller) =>
+                                              controller.repeat())
+                                      .shimmer(duration: 1200.ms),
+                                  errorWidget: (context, url, error) =>
+                                      Container(
+                                    color:
+                                        Pallete.darkBlueGrey.withOpacity(0.1),
+                                    child: Center(
+                                      child: Icon(
+                                        Icons.error,
+                                        size: 30.sp,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
                             ),
                           ),
                           Align(
@@ -241,7 +275,7 @@ class ConfirmQuizBottomSheet extends ConsumerWidget {
                                 ),
                               ),
                               Text(
-                                '192377',
+                                quiz.quizRoomId,
                                 style: TextStyle(
                                   color: Pallete.textWhite,
                                   fontSize: 14.sp,
@@ -264,7 +298,8 @@ class ConfirmQuizBottomSheet extends ConsumerWidget {
                                 ),
                               ),
                               Text(
-                                'Quizlee.com/Night_Crawlers',
+                                'Quizlee.com/${quiz.title}'
+                                    .removeSpacesAndLower(),
                                 style: TextStyle(
                                   color: Pallete.textWhite,
                                   fontSize: 14.sp,

@@ -22,6 +22,7 @@ extension StringCasingExtension on String {
       .join(' ');
   String? trimToken() => contains(":") ? split(":")[1].trim() : this;
   String? trimSpaces() => replaceAll(" ", "");
+  String removeSpacesAndLower() => replaceAll(' ', '').toLowerCase();
 }
 
 extension ImagePath on String {
@@ -43,6 +44,8 @@ extension NumExtensionss on num {
   num addPercentage(num v) => this + ((v / 100) * this);
   num getPercentage(num v) => ((v / 100) * this);
 }
+
+
 
 // void openUrl({String? url}) {
 //   launchUrl(Uri.parse("http://$url"));

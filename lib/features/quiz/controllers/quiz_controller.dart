@@ -10,6 +10,7 @@ import 'package:quizlee/models/quiz_model.dart';
 import 'package:quizlee/router.dart';
 import 'package:quizlee/utils/nav.dart';
 import 'package:quizlee/utils/snack_bar.dart';
+import 'package:quizlee/utils/utils.dart';
 import 'package:uuid/uuid.dart';
 
 class QuizController extends StateNotifier<bool> {
@@ -39,6 +40,7 @@ class QuizController extends StateNotifier<bool> {
     final user = _ref.watch(userProvider)!;
     String quizId = const Uuid().v1();
     String imageUrl = '';
+    String quizRoomId = generateRandomSix();
 
     final res = await _storageRepository.storeFile(
       path: 'quizzes/images',
@@ -62,6 +64,7 @@ class QuizController extends StateNotifier<bool> {
       isPublic: isPublic,
       createdAt: DateTime.now(),
       isCreationComplete: false,
+      quizRoomId: quizRoomId,
     );
 
     final ress = await _quizRepository.createQuiz(quiz: quiz);

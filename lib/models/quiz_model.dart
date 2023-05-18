@@ -15,6 +15,7 @@ class QuizModel {
   final bool isPublic;
   final DateTime createdAt;
   final bool isCreationComplete;
+  final String quizRoomId;
   const QuizModel({
     required this.uid,
     required this.quizId,
@@ -27,6 +28,7 @@ class QuizModel {
     required this.isPublic,
     required this.createdAt,
     required this.isCreationComplete,
+    required this.quizRoomId,
   });
 
   QuizModel copyWith({
@@ -41,6 +43,7 @@ class QuizModel {
     bool? isPublic,
     DateTime? createdAt,
     bool? isCreationComplete,
+    String? quizRoomId,
   }) {
     return QuizModel(
       uid: uid ?? this.uid,
@@ -54,6 +57,7 @@ class QuizModel {
       isPublic: isPublic ?? this.isPublic,
       createdAt: createdAt ?? this.createdAt,
       isCreationComplete: isCreationComplete ?? this.isCreationComplete,
+      quizRoomId: quizRoomId ?? this.quizRoomId,
     );
   }
 
@@ -70,6 +74,7 @@ class QuizModel {
       'isPublic': isPublic,
       'createdAt': createdAt.millisecondsSinceEpoch,
       'isCreationComplete': isCreationComplete,
+      'quizRoomId': quizRoomId,
     };
   }
 
@@ -86,6 +91,7 @@ class QuizModel {
       isPublic: (map["isPublic"] ?? false) as bool,
       createdAt: DateTime.fromMillisecondsSinceEpoch((map["createdAt"]??0) as int),
       isCreationComplete: (map["isCreationComplete"] ?? false) as bool,
+      quizRoomId: (map["quizRoomId"] ?? '') as String,
     );
   }
 
@@ -96,7 +102,7 @@ class QuizModel {
 
   @override
   String toString() {
-    return 'QuizModel(uid: $uid, quizId: $quizId, image: $image, title: $title, description: $description, date: $date, time: $time, questionIds: $questionIds, isPublic: $isPublic, createdAt: $createdAt, isCreationComplete: $isCreationComplete)';
+    return 'QuizModel(uid: $uid, quizId: $quizId, image: $image, title: $title, description: $description, date: $date, time: $time, questionIds: $questionIds, isPublic: $isPublic, createdAt: $createdAt, isCreationComplete: $isCreationComplete, quizRoomId: $quizRoomId)';
   }
 
   @override
@@ -114,7 +120,8 @@ class QuizModel {
       listEquals(other.questionIds, questionIds) &&
       other.isPublic == isPublic &&
       other.createdAt == createdAt &&
-      other.isCreationComplete == isCreationComplete;
+      other.isCreationComplete == isCreationComplete &&
+      other.quizRoomId == quizRoomId;
   }
 
   @override
@@ -129,6 +136,7 @@ class QuizModel {
       questionIds.hashCode ^
       isPublic.hashCode ^
       createdAt.hashCode ^
-      isCreationComplete.hashCode;
+      isCreationComplete.hashCode ^
+      quizRoomId.hashCode;
   }
 }

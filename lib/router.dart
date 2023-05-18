@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:quizlee/features/auth/views/login_screen.dart';
 import 'package:quizlee/features/base_nav/dummy_home.dart';
 import 'package:quizlee/features/base_nav/dummy_home2.dart';
-import 'package:quizlee/features/home/views/home_view.dart';
+import 'package:quizlee/features/base_nav/views/base_nav_wrapper.dart';
 import 'package:quizlee/features/quiz/views/create_quiz_view.dart';
 import 'package:quizlee/features/quiz/views/quiz_questions_view.dart';
 import 'package:routemaster/routemaster.dart';
@@ -27,7 +27,7 @@ final loggedOutRoute = RouteMap(
 final loggedInRoute = RouteMap(
   routes: {
     '/': (_) => const MaterialPage(
-          child: HomeView(),
+          child: BaseNavWrapper(),
         ),
     '/create-quiz': (_) => const MaterialPage(
           child: CreateQuizView(),

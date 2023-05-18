@@ -1,5 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -39,15 +41,39 @@ class UpcomingGameCard extends ConsumerWidget {
         child: Column(
           children: [
             //! image
-            Container(
-              height: 80.h,
-              width: double.infinity,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(6.r),
-                border: Border.all(
-                  color: Pallete.borderBlueGrey,
+            ClipRRect(
+              borderRadius: BorderRadius.circular(12.r),
+              child: CachedNetworkImage(
+                height: 80.h,
+                width: double.infinity,
+                fit: BoxFit.cover,
+                imageUrl: quiz.image,
+                placeholder: (context, url) => Container(
+                  decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                      colors: [
+                        Colors.black12.withOpacity(0.1),
+                        Colors.black12.withOpacity(0.1),
+                        Colors.black26,
+                        Colors.black26,
+                      ],
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
+                    ),
+                    borderRadius: BorderRadius.circular(15.r),
+                  ),
+                )
+                    .animate(onPlay: (controller) => controller.repeat())
+                    .shimmer(duration: 1200.ms),
+                errorWidget: (context, url, error) => Container(
+                  color: Pallete.darkBlueGrey.withOpacity(0.1),
+                  child: Center(
+                    child: Icon(
+                      Icons.error,
+                      size: 30.sp,
+                    ),
+                  ),
                 ),
-                color: Pallete.greyColor,
               ),
             ),
             18.sbH,

@@ -29,7 +29,7 @@ final getQuizByIdProvider =
 });
 
 //! the get all quizzes provider
-final getAllQuizzesProvider = StreamProvider.autoDispose((ref) {
+final getAllQuizzesProvider = StreamProvider((ref) {
   final quizController = ref.watch(quizControllerProvider.notifier);
   return quizController.getAllQuizzes();
 });
