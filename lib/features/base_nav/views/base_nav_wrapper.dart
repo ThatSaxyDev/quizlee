@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:quizlee/features/base_nav/widgets/nav_bar_widget.dart';
 import 'package:quizlee/features/home/views/home_view.dart';
+import 'package:quizlee/features/leaderboards/views/leaderboard_view.dart';
 import 'package:quizlee/features/quiz/views/temporary_quiz_view.dart';
 import 'package:quizlee/theme/palette.dart';
 
@@ -16,9 +17,7 @@ class BaseNavWrapper extends ConsumerStatefulWidget {
 class _BaseNavWrapperState extends ConsumerState<BaseNavWrapper> {
   List<Widget> pages = const [
     HomeView(),
-    Center(
-      child: Text('Leaderboards'),
-    ),
+    LeaderBoardView(),
     TempQuizView(),
   ];
 
