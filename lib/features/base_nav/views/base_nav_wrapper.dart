@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:quizlee/features/base_nav/widgets/nav_bar_widget.dart';
 import 'package:quizlee/features/home/views/home_view.dart';
+import 'package:quizlee/features/quiz/views/temporary_quiz_view.dart';
 import 'package:quizlee/theme/palette.dart';
 
 class BaseNavWrapper extends ConsumerStatefulWidget {
@@ -18,9 +19,7 @@ class _BaseNavWrapperState extends ConsumerState<BaseNavWrapper> {
     Center(
       child: Text('Leaderboards'),
     ),
-    Center(
-      child: Text('Account'),
-    ),
+    TempQuizView(),
   ];
 
   final ValueNotifier<int> _page = ValueNotifier(0);

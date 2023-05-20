@@ -12,6 +12,7 @@ import 'package:quizlee/utils/app_constants.dart';
 import 'package:quizlee/utils/app_texts.dart';
 import 'package:quizlee/utils/error_text.dart';
 import 'package:quizlee/utils/loader.dart';
+import 'package:quizlee/utils/snack_bar.dart';
 import 'package:quizlee/utils/widget_extensions.dart';
 import 'package:quizlee/utils/widgets/click_button.dart';
 import 'package:quizlee/utils/widgets/myicon.dart';
@@ -33,9 +34,19 @@ class _HomeViewState extends ConsumerState<HomeView> {
     super.dispose();
   }
 
+  void checkIfQuizRoomExists({
+    required WidgetRef ref,
+  }) {
+    ref.read(quizControllerProvider.notifier).checkIfQUizRoomExists(
+          context: context,
+          quizRoomId: _codeController.text,
+        );
+  }
+
   @override
   Widget build(BuildContext context) {
-    final quizzesStream = ref.watch(getAllQuizzesProvider);
+    final confirmedQuizzesStream = ref.watch(getConfirmedQuizzesProvider);
+    final isLoading = ref.watch(quizControllerProvider);
     UserModel user = ref.watch(userProvider)!;
     List<String> names = user.name.split(' ');
     String firstName = names[0];
@@ -92,47 +103,44 @@ class _HomeViewState extends ConsumerState<HomeView> {
                           ),
 
                           //! join button
-                          InkWell(
-                            onTap: () {
-                              showModalBottomSheet(
-                                isScrollControlled: true,
-                                enableDrag: true,
-                                backgroundColor: Colors.transparent,
-                                context: context,
-                                builder: (context) => const Wrap(
-                                  children: [
-                                    JoinQuizBottomSheet(),
-                                  ],
-                                ),
-                              );
-                            },
-                            splashColor: Colors.transparent,
-                            highlightColor: Colors.transparent,
-                            child: SizedBox(
-                              height: 44.h,
-                              width: 76.w,
-                              child: Center(
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Text(
-                                      AppTexts.join,
-                                      style: TextStyle(
-                                        color: Pallete.textWhite,
-                                        fontSize: 14.sp,
-                                        fontWeight: FontWeight.w500,
+                          isLoading
+                              ? const Loader()
+                              : InkWell(
+                                  onTap: () {
+                                    if (_codeController.text.length == 6) {
+                                      checkIfQuizRoomExists(ref: ref);
+                                    } else {
+                                      showSnackBar(context, 'Enter valid code');
+                                    }
+                                  },
+                                  splashColor: Colors.transparent,
+                                  highlightColor: Colors.transparent,
+                                  child: SizedBox(
+                                    height: 44.h,
+                                    width: 76.w,
+                                    child: Center(
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          Text(
+                                            AppTexts.join,
+                                            style: TextStyle(
+                                              color: Pallete.textWhite,
+                                              fontSize: 14.sp,
+                                              fontWeight: FontWeight.w500,
+                                            ),
+                                          ),
+                                          13.sbW,
+                                          Icon(
+                                            Icons.arrow_forward_ios_rounded,
+                                            size: 14.sp,
+                                          )
+                                        ],
                                       ),
                                     ),
-                                    13.sbW,
-                                    Icon(
-                                      Icons.arrow_forward_ios_rounded,
-                                      size: 14.sp,
-                                    )
-                                  ],
+                                  ),
                                 ),
-                              ),
-                            ),
-                          ),
                         ],
                       ),
                       //! or
@@ -170,7 +178,7 @@ class _HomeViewState extends ConsumerState<HomeView> {
                       12.sbH,
 
                       //! upcoming game cards
-                      quizzesStream.when(
+                      confirmedQuizzesStream.when(
                         data: (quizzes) {
                           if (quizzes.isEmpty) {
                             return const ErrorText(error: 'No quiz');

@@ -5,6 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:quizlee/core/providers/storage_repository_provider.dart';
 import 'package:quizlee/features/auth/controller/auth_controller.dart';
 import 'package:quizlee/features/quiz/repositories/quiz_repository.dart';
+import 'package:quizlee/features/quiz/widgets/join_quiz_bottom_sheet.dart';
 import 'package:quizlee/models/question_model.dart';
 import 'package:quizlee/models/quiz_model.dart';
 import 'package:quizlee/router.dart';
@@ -40,7 +41,7 @@ class QuizController extends StateNotifier<bool> {
     final user = _ref.watch(userProvider)!;
     String quizId = const Uuid().v1();
     String imageUrl = '';
-    String quizRoomId = generateRandomSix();
+    // String quizRoomId = generateRandomSix();
 
     final res = await _storageRepository.storeFile(
       path: 'quizzes/images',
@@ -64,7 +65,8 @@ class QuizController extends StateNotifier<bool> {
       isPublic: isPublic,
       createdAt: DateTime.now(),
       isCreationComplete: false,
-      quizRoomId: quizRoomId,
+      quizRoomId: '',
+      participantsIds: [],
     );
 
     final ress = await _quizRepository.createQuiz(quiz: quiz);
@@ -75,9 +77,7 @@ class QuizController extends StateNotifier<bool> {
       (l) => showSnackBar(context, l.message),
       (r) {
         showSnackBar(context, 'Quiz created');
-        nav(
-            destination: '/create-quiz/quiz-questions/$quizId',
-            context: context);
+        nav(destination: '/quiz-questions/$quizId', context: context);
       },
     );
   }
@@ -87,7 +87,9 @@ class QuizController extends StateNotifier<bool> {
     required BuildContext context,
     required QuizModel quiz,
   }) async {
-    final res = await _quizRepository.confirmQuizCreation(quiz: quiz);
+    String quizRoomId = generateRandomSix();
+    final res = await _quizRepository.confirmQuizCreation(
+        quiz: quiz, quizRoomId: quizRoomId);
 
     res.fold(
       (l) => showSnackBar(context, l.message),
@@ -95,9 +97,59 @@ class QuizController extends StateNotifier<bool> {
     );
   }
 
+  //! check if quiz room exists
+  void checkIfQUizRoomExists({
+    required BuildContext context,
+    required String quizRoomId,
+  }) async {
+    final res =
+        await _quizRepository.checkIfQuizRoomExists(quizRoomId: quizRoomId);
+
+    res.fold(
+      (l) => showSnackBar(context, l.message),
+      (r) {
+        r == true
+            ? showModalBottomSheet(
+                isScrollControlled: true,
+                enableDrag: true,
+                backgroundColor: Colors.transparent,
+                context: context,
+                builder: (context) => Wrap(
+                  children: [
+                    JoinQuizBottomSheet(
+                      quizRoomId: quizRoomId,
+                    ),
+                  ],
+                ),
+              )
+            : showSnackBar(context, 'not found');
+      },
+    );
+  }
+
+  //! join a quiz room
+  void joinQuizRoom({
+    required BuildContext context,
+    required QuizModel quiz,
+  }) async {
+    final user = _ref.watch(userProvider)!;
+
+    final res = await _quizRepository.joinQuizRoom(quiz: quiz, uid: user.uid);
+
+    res.fold(
+      (l) => showSnackBar(context, l.message),
+      (r) => showSnackBar(context, 'Joined'),
+    );
+  }
+
   //! get quiz by Id
   Stream<QuizModel> getQuizById({required quizId}) {
     return _quizRepository.getQuizById(quizId: quizId);
+  }
+
+  //! get quiz by room Id
+  Stream<QuizModel> getQuizByRoomId({required quizRoomId}) {
+    return _quizRepository.getQuizByRoomId(quizRoomId: quizRoomId);
   }
 
   //! add question to quiz
@@ -137,6 +189,11 @@ class QuizController extends StateNotifier<bool> {
   //! get all quizzes
   Stream<List<QuizModel>> getAllQuizzes() {
     return _quizRepository.getAllQuizzes();
+  }
+
+  //! get confirmed quizzes
+  Stream<List<QuizModel>> getConfirmedQuizzes() {
+    return _quizRepository.getConfirmedQuizzes();
   }
 
   //! get all questions in a quiz

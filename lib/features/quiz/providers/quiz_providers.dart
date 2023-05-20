@@ -28,10 +28,23 @@ final getQuizByIdProvider =
   return quizController.getQuizById(quizId: quizId);
 });
 
+//! the get quiz by Room ID provider
+final getQuizByRoomIdProvider =
+    StreamProvider.family.autoDispose((ref, String quizRoomId) {
+  final quizController = ref.watch(quizControllerProvider.notifier);
+  return quizController.getQuizByRoomId(quizRoomId: quizRoomId);
+});
+
 //! the get all quizzes provider
 final getAllQuizzesProvider = StreamProvider((ref) {
   final quizController = ref.watch(quizControllerProvider.notifier);
   return quizController.getAllQuizzes();
+});
+
+//! the get confirmed quizzes provider
+final getConfirmedQuizzesProvider = StreamProvider((ref) {
+  final quizController = ref.watch(quizControllerProvider.notifier);
+  return quizController.getConfirmedQuizzes();
 });
 
 //! the get ALL QUESTions in a quiz provider
