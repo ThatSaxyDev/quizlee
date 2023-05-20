@@ -10,11 +10,13 @@ class ClickButton extends StatefulWidget {
   final void Function()? onTap;
   final double? width;
   final String text;
+  final bool? isActive;
   const ClickButton({
     Key? key,
     this.onTap,
     this.width,
     required this.text,
+    this.isActive = true,
   }) : super(key: key);
 
   @override
@@ -23,7 +25,7 @@ class ClickButton extends StatefulWidget {
 
 class _ClickButtonState extends State<ClickButton> {
   final ValueNotifier<bool> clicked = ValueNotifier(false);
-  
+
   @override
   Widget build(BuildContext context) {
     return ValueListenableBuilder(
@@ -34,11 +36,13 @@ class _ClickButtonState extends State<ClickButton> {
           splashColor: Colors.transparent,
           highlightColor: Colors.transparent,
           onTap: () {
-            clicked.value = true;
-            Timer(const Duration(milliseconds: 100), () {
-              clicked.value = false;
-              widget.onTap?.call();
-            });
+            if (widget.isActive == true) {
+              clicked.value = true;
+              Timer(const Duration(milliseconds: 100), () {
+                clicked.value = false;
+                widget.onTap?.call();
+              });
+            }
           },
           child: SizedBox(
             height: 70.h,
@@ -53,11 +57,15 @@ class _ClickButtonState extends State<ClickButton> {
                     height: 68.h,
                     width: widget.width ?? double.infinity,
                     decoration: BoxDecoration(
-                      color: Pallete.buttonBlue,
+                      color: widget.isActive == true
+                          ? Pallete.buttonBlue
+                          : Pallete.inactiveButtonBlue,
                       borderRadius: BorderRadius.circular(12.r),
                       boxShadow: [
                         BoxShadow(
-                          color: Pallete.buttonShadow,
+                          color: widget.isActive == true
+                              ? Pallete.buttonShadow
+                              : Pallete.inactiveButtonShadow,
                           offset: clicked.value == true
                               ? const Offset(0, 0)
                               : Offset(0, 5.h),
@@ -68,7 +76,9 @@ class _ClickButtonState extends State<ClickButton> {
                       child: Text(
                         widget.text,
                         style: TextStyle(
-                          color: Pallete.textWhite,
+                          color: widget.isActive == true
+                              ? Pallete.textWhite
+                              : Pallete.textGrey,
                           fontSize: 14.sp,
                           fontWeight: FontWeight.w500,
                         ),

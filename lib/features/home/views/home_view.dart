@@ -1,10 +1,10 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:quizlee/features/auth/controller/auth_controller.dart';
 import 'package:quizlee/features/home/widgets/upcoming_game_card.dart';
 import 'package:quizlee/features/quiz/providers/quiz_providers.dart';
+import 'package:quizlee/features/quiz/widgets/join_quiz_bottom_sheet.dart';
 import 'package:quizlee/models/user_model.dart';
 import 'package:quizlee/router.dart';
 import 'package:quizlee/theme/palette.dart';
@@ -93,7 +93,19 @@ class _HomeViewState extends ConsumerState<HomeView> {
 
                           //! join button
                           InkWell(
-                            onTap: () {},
+                            onTap: () {
+                              showModalBottomSheet(
+                                isScrollControlled: true,
+                                enableDrag: true,
+                                backgroundColor: Colors.transparent,
+                                context: context,
+                                builder: (context) => const Wrap(
+                                  children: [
+                                    JoinQuizBottomSheet(),
+                                  ],
+                                ),
+                              );
+                            },
                             splashColor: Colors.transparent,
                             highlightColor: Colors.transparent,
                             child: SizedBox(

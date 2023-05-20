@@ -44,6 +44,9 @@ class Pallete {
   static const upcomingblue = Color(0xff141421);
   static const answerBorder = Color(0xff22222E);
   static const greenn = Color(0xff86EFAC);
+  static const gradientGreen = Color(0xff22C55E);
+  static const inactiveButtonBlue = Color(0xff40407F);
+  static const inactiveButtonShadow = Color(0xff252559);
 
   // Themes
   static var darkModeAppTheme = ThemeData.dark().copyWith(
