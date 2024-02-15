@@ -13,7 +13,7 @@ import 'package:quizlee/theme/palette.dart';
 import 'package:quizlee/utils/app_constants.dart';
 import 'package:quizlee/utils/loader.dart';
 import 'package:quizlee/utils/nav.dart';
-import 'package:quizlee/utils/widget_extensions.dart';
+import 'package:quizlee/utils/app_extensions.dart';
 import 'package:quizlee/utils/widgets/click_button.dart';
 import 'package:quizlee/utils/widgets/myicon.dart';
 
@@ -352,10 +352,11 @@ class _AddQuestionsBottomSheetState
                                                   color: Pallete.textWhite,
                                                 ),
                                                 decoration: InputDecoration(
-                                                  hintText: index == 2 ||
-                                                          index == 3
-                                                      ? 'Add answer here (Optional)'
-                                                      : 'Add answer here',
+                                                  // hintText: index == 2 ||
+                                                  //         index == 3
+                                                  //     ? 'Add answer here (Optional)'
+                                                  //     : 'Add answer here',
+                                                  hintText: 'Add option here',
                                                   hintStyle: TextStyle(
                                                     fontSize: 14.sp,
                                                     fontWeight: FontWeight.w500,

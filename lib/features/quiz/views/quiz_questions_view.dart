@@ -12,7 +12,7 @@ import 'package:quizlee/utils/app_constants.dart';
 import 'package:quizlee/utils/error_text.dart';
 import 'package:quizlee/utils/loader.dart';
 import 'package:quizlee/utils/nav.dart';
-import 'package:quizlee/utils/widget_extensions.dart';
+import 'package:quizlee/utils/app_extensions.dart';
 import 'package:quizlee/utils/widgets/click_button.dart';
 import 'package:quizlee/utils/widgets/myicon.dart';
 
@@ -69,6 +69,7 @@ class QuizQuestionsView extends ConsumerWidget {
                                 ErrorText(error: error.toString()),
                             loading: () => const Loader(),
                           ),
+                          140.sbH,
                         ],
                       ),
                     ),

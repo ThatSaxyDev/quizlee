@@ -10,7 +10,7 @@ import 'package:quizlee/router.dart';
 import 'package:quizlee/theme/palette.dart';
 import 'package:quizlee/utils/app_texts.dart';
 import 'package:quizlee/utils/utils.dart';
-import 'package:quizlee/utils/widget_extensions.dart';
+import 'package:quizlee/utils/app_extensions.dart';
 import 'package:quizlee/utils/widgets/myicon.dart';
 
 class UpcomingGameCard extends ConsumerWidget {

@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:quizlee/theme/palette.dart';
-import 'package:quizlee/utils/widget_extensions.dart';
+import 'package:quizlee/utils/app_extensions.dart';
 import 'package:quizlee/utils/widgets/myicon.dart';
 
 class NavBarWidget extends StatelessWidget {
@@ -13,14 +13,14 @@ class NavBarWidget extends StatelessWidget {
   final FontWeight? fontWeight;
   final void Function()? onTap;
   const NavBarWidget({
-    Key? key,
+    super.key,
     required this.icon,
     this.color,
     this.textColor,
     required this.label,
     this.fontWeight,
     this.onTap,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) => InkWell(
@@ -29,7 +29,7 @@ class NavBarWidget extends StatelessWidget {
         onTap: onTap,
         child: SizedBox(
           height: 48.h,
-          width: 90.w,
+          width: 80.w,
           child: Column(
             children: [
               //! ICON

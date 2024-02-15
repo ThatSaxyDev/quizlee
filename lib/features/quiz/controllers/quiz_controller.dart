@@ -196,6 +196,12 @@ class QuizController extends StateNotifier<bool> {
     return _quizRepository.getConfirmedQuizzes();
   }
 
+  //! get quizzes that you joined
+  Stream<List<QuizModel>> getQuizzesJoined() {
+    final user = _ref.watch(userProvider)!;
+    return _quizRepository.getQuizzesJoined(uid: user.uid);
+  }
+
   //! get all questions in a quiz
   Stream<List<QuestionModel>> getAllQuestionsInAQuiz({required quizId}) {
     return _quizRepository.getAllQuestionsInAQuiz(quizId: quizId);

@@ -4,8 +4,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:quizlee/features/quiz/widgets/edit_questions_bottom_sheet.dart';
 import 'package:quizlee/models/question_model.dart';
 import 'package:quizlee/theme/palette.dart';
+import 'package:quizlee/utils/app_extensions.dart';
 
-import 'package:quizlee/utils/widget_extensions.dart';
 import 'package:quizlee/utils/widgets/myicon.dart';
 
 class QuestionListCard extends StatelessWidget {

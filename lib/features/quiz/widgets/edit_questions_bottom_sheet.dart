@@ -14,7 +14,7 @@ import 'package:quizlee/theme/palette.dart';
 import 'package:quizlee/utils/app_constants.dart';
 import 'package:quizlee/utils/loader.dart';
 import 'package:quizlee/utils/nav.dart';
-import 'package:quizlee/utils/widget_extensions.dart';
+import 'package:quizlee/utils/app_extensions.dart';
 import 'package:quizlee/utils/widgets/click_button.dart';
 import 'package:quizlee/utils/widgets/myicon.dart';
 
@@ -496,7 +496,7 @@ class _EditQuestionsBottomSheetState
                           padding: EdgeInsets.zero,
                           onPressed: () => deleteQuestion(ref: ref),
                           icon: const Icon(
-                            PhosphorIcons.trashFill,
+                            PhosphorIconsFill.trash,
                             color: Pallete.redColor,
                           ),
                         ),

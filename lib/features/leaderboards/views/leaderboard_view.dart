@@ -5,15 +5,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/svg.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:quizlee/features/leaderboards/widgets/leaderboard_tile.dart';
 import 'package:quizlee/features/leaderboards/widgets/position_widget.dart';
 
 import 'package:quizlee/features/leaderboards/widgets/slide_containers.dart';
 import 'package:quizlee/theme/palette.dart';
 import 'package:quizlee/utils/app_constants.dart';
-import 'package:quizlee/utils/string_extensions.dart';
-import 'package:quizlee/utils/widget_extensions.dart';
+import 'package:quizlee/utils/app_extensions.dart';
 import 'package:quizlee/utils/widgets/myicon.dart';
 
 class LeaderBoardView extends ConsumerStatefulWidget {
@@ -134,7 +133,7 @@ class _LeaderBoardViewState extends ConsumerState<LeaderBoardView> {
                               10,
                               (index) => LeaderBoardTile(
                                 index: index,
-                              ),
+                              ).fadeInFromBottom(),
                             ),
                           ),
                         ),

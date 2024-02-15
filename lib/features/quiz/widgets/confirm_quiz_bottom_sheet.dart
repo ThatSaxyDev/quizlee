@@ -9,9 +9,8 @@ import 'package:quizlee/theme/palette.dart';
 import 'package:quizlee/utils/error_text.dart';
 import 'package:quizlee/utils/loader.dart';
 import 'package:quizlee/utils/nav.dart';
-import 'package:quizlee/utils/string_extensions.dart';
 import 'package:quizlee/utils/utils.dart';
-import 'package:quizlee/utils/widget_extensions.dart';
+import 'package:quizlee/utils/app_extensions.dart';
 import 'package:quizlee/utils/widgets/click_button.dart';
 import 'package:quizlee/utils/widgets/myicon.dart';
 
@@ -275,7 +274,7 @@ class ConfirmQuizBottomSheet extends ConsumerWidget {
                                 ),
                               ),
                               Text(
-                                quiz.quizRoomId,
+                                data.quizRoomId,
                                 style: TextStyle(
                                   color: Pallete.textWhite,
                                   fontSize: 14.sp,
@@ -340,7 +339,7 @@ class ConfirmQuizBottomSheet extends ConsumerWidget {
                     ),
 
                     24.sbH,
-                    ClickButton(text: 'Done'),
+                    const ClickButton(text: 'Done'),
                   ],
                 );
         },

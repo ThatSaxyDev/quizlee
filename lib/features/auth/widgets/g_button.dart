@@ -64,7 +64,7 @@ class GButton extends ConsumerWidget {
           ),
           elevation: 0,
           shadowColor: Colors.transparent,
-          backgroundColor: currentTheme.colorScheme.background,
+          backgroundColor: Pallete.buttonBlue,
           padding: EdgeInsets.symmetric(horizontal: padding),
         ),
         child: Center(

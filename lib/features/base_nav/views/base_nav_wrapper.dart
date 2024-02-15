@@ -4,6 +4,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:quizlee/features/base_nav/widgets/nav_bar_widget.dart';
 import 'package:quizlee/features/home/views/home_view.dart';
 import 'package:quizlee/features/leaderboards/views/leaderboard_view.dart';
+import 'package:quizlee/features/profile/views/profile_view.dart';
+import 'package:quizlee/features/quiz/views/my_quiz_view.dart';
 import 'package:quizlee/features/quiz/views/temporary_quiz_view.dart';
 import 'package:quizlee/theme/palette.dart';
 
@@ -17,8 +19,9 @@ class BaseNavWrapper extends ConsumerStatefulWidget {
 class _BaseNavWrapperState extends ConsumerState<BaseNavWrapper> {
   List<Widget> pages = const [
     HomeView(),
+    MyQuizView(),
     LeaderBoardView(),
-    TempQuizView(),
+    ProfileView(),
   ];
 
   final ValueNotifier<int> _page = ValueNotifier(0);
@@ -32,6 +35,7 @@ class _BaseNavWrapperState extends ConsumerState<BaseNavWrapper> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+       backgroundColor: Pallete.backgroundBlue,
       // pages
       body: ValueListenableBuilder(
         valueListenable: _page,
@@ -61,22 +65,31 @@ class _BaseNavWrapperState extends ConsumerState<BaseNavWrapper> {
                   textColor: _page.value == 0 ? Pallete.textWhite : null,
                 ),
 
-                //! Leaderboards
+                //! my quiz
                 NavBarWidget(
                   onTap: () => _page.value = 1,
-                  icon: 'leaderboard',
-                  label: 'Leaderboard',
+                  icon: 'myQuiz',
+                  label: 'My Quiz',
                   color: _page.value == 1 ? Pallete.buttonBlue : null,
                   textColor: _page.value == 1 ? Pallete.textWhite : null,
                 ),
 
-                //! Account
+                //! Leaderboards
                 NavBarWidget(
                   onTap: () => _page.value = 2,
-                  icon: 'account',
-                  label: 'Account',
+                  icon: 'leaderboard',
+                  label: 'Leaderboard',
                   color: _page.value == 2 ? Pallete.buttonBlue : null,
                   textColor: _page.value == 2 ? Pallete.textWhite : null,
+                ),
+
+                //! Account
+                NavBarWidget(
+                  onTap: () => _page.value = 3,
+                  icon: 'account',
+                  label: 'Account',
+                  color: _page.value == 3 ? Pallete.buttonBlue : null,
+                  textColor: _page.value == 3 ? Pallete.textWhite : null,
                 ),
               ],
             ),

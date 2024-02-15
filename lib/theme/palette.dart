@@ -20,7 +20,6 @@ class Pallete {
   static const backButtonGrey = Color(0xffF4F5F5);
   static const orange = Color(0xffD95700);
 
-  static const imagePlaceHolder1 = Color(0xffD9D9D9);
   static var imagePlaceHolder2 = const Color(0xff969696).withOpacity(0.29);
   static const imagePlaceHolder3 = Color(0xffECE9D9);
 
@@ -34,6 +33,7 @@ class Pallete {
   //!
   static const textWhite = Color(0xffF0F0FA);
   static const backgroundBlue = Color(0xff0D0D1A);
+  static const notifbackgroundBlue = Color(0xff0D0D19);
   static const textGrey = Color(0xffCFCFE5);
   static const textHintGrey = Color(0xff7A7A87);
   static const buttonBlue = Color(0xff7373E5);
@@ -47,6 +47,7 @@ class Pallete {
   static const gradientGreen = Color(0xff22C55E);
   static const inactiveButtonBlue = Color(0xff40407F);
   static const inactiveButtonShadow = Color(0xff252559);
+  static const gradientGrey = Color(0xffD9D9D9);
 
   // Themes
   static var darkModeAppTheme = ThemeData.dark().copyWith(
@@ -54,6 +55,7 @@ class Pallete {
     // textTheme: ThemeData.dark().textTheme.apply(
     //       fontFamily: 'Sk-Modernist',
     //     ),
+    useMaterial3: true,
     scaffoldBackgroundColor: blackColor,
     cardColor: greyColor,
     appBarTheme: const AppBarTheme(
@@ -74,6 +76,7 @@ class Pallete {
     // textTheme: ThemeData.light().textTheme.apply(
     //       fontFamily: 'Sk-Modernist',
     //     ),
+    useMaterial3: true,
     scaffoldBackgroundColor: whiteColor,
     cardColor: greyColor,
     appBarTheme: const AppBarTheme(

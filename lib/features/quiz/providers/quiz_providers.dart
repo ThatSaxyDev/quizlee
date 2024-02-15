@@ -42,9 +42,15 @@ final getAllQuizzesProvider = StreamProvider((ref) {
 });
 
 //! the get confirmed quizzes provider
-final getConfirmedQuizzesProvider = StreamProvider((ref) {
+final getConfirmedQuizzesProvider = StreamProvider.autoDispose((ref) {
   final quizController = ref.watch(quizControllerProvider.notifier);
   return quizController.getConfirmedQuizzes();
+});
+
+//! the get all quizzes joined provider
+final getAllQuizzesjoinedProvider = StreamProvider.autoDispose((ref) {
+  final quizController = ref.watch(quizControllerProvider.notifier);
+  return quizController.getQuizzesJoined();
 });
 
 //! the get ALL QUESTions in a quiz provider

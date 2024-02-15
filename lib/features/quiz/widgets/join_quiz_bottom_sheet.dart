@@ -12,9 +12,8 @@ import 'package:quizlee/models/quiz_model.dart';
 import 'package:quizlee/theme/palette.dart';
 import 'package:quizlee/utils/error_text.dart';
 import 'package:quizlee/utils/loader.dart';
-import 'package:quizlee/utils/string_extensions.dart';
 import 'package:quizlee/utils/utils.dart';
-import 'package:quizlee/utils/widget_extensions.dart';
+import 'package:quizlee/utils/app_extensions.dart';
 import 'package:quizlee/utils/widgets/click_button.dart';
 
 class JoinQuizBottomSheet extends ConsumerWidget {
@@ -48,6 +47,18 @@ class JoinQuizBottomSheet extends ConsumerWidget {
       ),
       child: quizStream.when(
         data: (quiz) {
+          String timeAsString = quiz.time;
+          DateTime presentTime = quiz.date;
+
+          String dateString =
+              "${presentTime.year}-${presentTime.month.toString().padLeft(2, '0')}-${presentTime.day.toString().padLeft(2, '0')}";
+          String dateTimeString = "$dateString $timeAsString:00";
+          DateTime targetTime = DateTime.parse(dateTimeString);
+
+          Duration countdownDuration = targetTime.difference(DateTime.now());
+
+          String formattedDuration =
+              '${countdownDuration.inHours.toString().padLeft(2, '0')} Hrs ${countdownDuration.inMinutes.remainder(60).toString().padLeft(2, '0')} Min ${countdownDuration.inSeconds.remainder(60).toString().padLeft(2, '0')} Sec';
           return Column(
             children: [
               32.sbH,
@@ -215,7 +226,7 @@ class JoinQuizBottomSheet extends ConsumerWidget {
                                 ),
                                 8.sbH,
                                 Text(
-                                  '09 Hrs 25 Min 45 Sec',
+                                  formattedDuration,
                                   style: TextStyle(
                                     color: Pallete.gradientGreen,
                                     fontSize: 24.sp,

@@ -9,7 +9,6 @@ import 'package:quizlee/models/user_model.dart';
 import 'package:quizlee/router.dart';
 import 'package:quizlee/theme/palette.dart';
 import 'package:quizlee/utils/error_text.dart';
-import 'package:quizlee/utils/loader.dart';
 import 'package:routemaster/routemaster.dart';
 
 void main() async {
@@ -52,7 +51,7 @@ class _MyAppState extends ConsumerState<MyApp> {
             splitScreenMode: false,
             builder: (context, child) {
               return MaterialApp.router(
-                title: 'Apex',
+                title: 'Quizlee',
                 theme: ref.watch(themeNotifierProvider),
                 debugShowCheckedModeBanner: false,
                 routerDelegate: RoutemasterDelegate(

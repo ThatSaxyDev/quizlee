@@ -4,7 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:quizlee/features/auth/controller/auth_controller.dart';
 import 'package:quizlee/features/auth/widgets/g_button.dart';
 import 'package:quizlee/utils/loader.dart';
-import 'package:quizlee/utils/widget_extensions.dart';
+import 'package:quizlee/utils/app_extensions.dart';
 
 import '../../../theme/palette.dart';
 

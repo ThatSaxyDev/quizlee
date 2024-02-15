@@ -3,6 +3,7 @@ import 'package:quizlee/features/auth/views/login_screen.dart';
 import 'package:quizlee/features/base_nav/dummy_home.dart';
 import 'package:quizlee/features/base_nav/dummy_home2.dart';
 import 'package:quizlee/features/base_nav/views/base_nav_wrapper.dart';
+import 'package:quizlee/features/notifications/views/notifications_view.dart';
 import 'package:quizlee/features/quiz/views/create_quiz_view.dart';
 import 'package:quizlee/features/quiz/views/quiz_questions_view.dart';
 import 'package:routemaster/routemaster.dart';
@@ -41,6 +42,9 @@ final loggedInRoute = RouteMap(
           child: QuizQuestionsView(
             quizId: routeData.pathParameters['quizId']!,
           ),
+        ),
+    '/notifications': (_) => const MaterialPage(
+          child: NotificationsView(),
         ),
     // '/product-details/:productId': (routeData) => MaterialPage(
     //       child: BuyerProductDetailsView(

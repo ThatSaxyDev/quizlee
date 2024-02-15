@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:quizlee/utils/string_extensions.dart';
+import 'package:quizlee/utils/app_extensions.dart';
 
 class MyIcon extends StatelessWidget {
   final void Function()? onTap;
@@ -11,12 +11,12 @@ class MyIcon extends StatelessWidget {
   final Color? color;
 
   const MyIcon({
-    Key? key,
+    super.key,
     required this.icon,
     this.height,
     this.color,
     this.onTap,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -34,9 +34,9 @@ class MyIcon extends StatelessWidget {
 class BackIcon extends StatelessWidget {
   final void Function()? onTap;
   const BackIcon({
-    Key? key,
+    super.key,
     required this.onTap,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
