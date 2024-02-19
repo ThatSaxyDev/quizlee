@@ -13,7 +13,12 @@ class ProfileView extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    UserModel user = ref.watch(userProvider)!;
+    UserModel? user = ref.watch(userProvider);
+
+    if (user == null) {
+      return const SizedBox();
+    }
+
     List<String> names = user.name.split(' ');
     String firstName = names[0];
     return SizedBox(
@@ -77,12 +82,14 @@ class ProfileView extends ConsumerWidget {
                     height: 40.h,
                   ),
                   12.sbW,
-                  'Log Uut'.txt14(
+                  'Log Out'.txt14(
                       fontWeight: FontWeight.w500,
                       color: const Color(0xFFEF4444)),
                 ],
               ),
-            ).tap(onTap: () {}),
+            ).tap(onTap: () {
+              ref.read(authControllerProvider.notifier).logOut();
+            }),
           ],
         ),
       ),
