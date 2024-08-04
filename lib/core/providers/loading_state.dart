@@ -1,5 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+//! TODO: Must remove this and refactor
+
 final loadingStateControllerProvider =
     StateNotifierProvider<LoadingStateController, bool>((ref) {
   return LoadingStateController();
