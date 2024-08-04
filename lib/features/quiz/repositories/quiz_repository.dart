@@ -128,6 +128,18 @@ class QuizRepository {
             .toList());
   }
 
+  //! get quizzes that areconfirmed
+  Stream<List<QuizModel>> getQuizDrafts() {
+    return _quizzes
+        .where('isCreationComplete', isEqualTo: false)
+        .snapshots()
+        .map((event) => event.docs
+            .map(
+              (e) => QuizModel.fromMap(e.data() as Map<String, dynamic>),
+            )
+            .toList());
+  }
+
   //! get quizzes that you joined
   Stream<List<QuizModel>> getQuizzesJoined({required String uid}) {
     return _quizzes

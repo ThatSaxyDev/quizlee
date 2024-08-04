@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:quizlee/core/failure.dart';
 import 'package:quizlee/core/providers/storage_repository_provider.dart';
 import 'package:quizlee/features/auth/controller/auth_controller.dart';
 import 'package:quizlee/features/quiz/repositories/quiz_repository.dart';
@@ -28,7 +29,7 @@ class QuizController extends StateNotifier<bool> {
         super(false);
 
   //! create a quiz
-  void createQuiz({
+  Future<void> createQuiz({
     required BuildContext context,
     required String title,
     required String description,
@@ -36,6 +37,8 @@ class QuizController extends StateNotifier<bool> {
     required String time,
     required File? image,
     required bool isPublic,
+    required void Function(Failure)? onError,
+    required void Function(String)? onSuccess,
   }) async {
     // _ref.read(loadingStateControllerProvider.notifier).loading();
     final user = _ref.watch(userProvider)!;
@@ -49,7 +52,11 @@ class QuizController extends StateNotifier<bool> {
       file: image,
     );
     res.fold(
-      (l) => showSnackBar(context, l.message),
+      (l) {
+        showSnackBar(context, l.message);
+        onError!(l);
+        return;
+      },
       (r) => imageUrl = r,
     );
 
@@ -74,10 +81,14 @@ class QuizController extends StateNotifier<bool> {
     // _ref.read(loadingStateControllerProvider.notifier).stop();
 
     ress.fold(
-      (l) => showSnackBar(context, l.message),
+      (l) {
+        showSnackBar(context, l.message);
+        onError!(l);
+      },
       (r) {
         showSnackBar(context, 'Quiz created');
         nav(destination: '/quiz-questions/$quizId', context: context);
+        onSuccess!('');
       },
     );
   }
@@ -194,6 +205,10 @@ class QuizController extends StateNotifier<bool> {
   //! get confirmed quizzes
   Stream<List<QuizModel>> getConfirmedQuizzes() {
     return _quizRepository.getConfirmedQuizzes();
+  }
+
+  Stream<List<QuizModel>> getQuizDrafts() {
+    return _quizRepository.getQuizDrafts();
   }
 
   //! get quizzes that you joined

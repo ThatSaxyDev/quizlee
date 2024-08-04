@@ -2,6 +2,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:quizlee/core/providers/firebase_provider.dart';
 import 'package:quizlee/core/providers/storage_repository_provider.dart';
 import 'package:quizlee/features/quiz/controllers/quiz_controller.dart';
+import 'package:quizlee/features/quiz/notifiers/quiz_state_notifier.dart';
 import 'package:quizlee/features/quiz/repositories/quiz_repository.dart';
 
 //! the quiz repository provider
@@ -19,6 +20,10 @@ final quizControllerProvider =
     storageRepository: storageRepository,
     ref: ref,
   );
+});
+
+final quizStateNotifierProvider = NotifierProvider<QuizStateNotifier, QuizState>(() {
+  return QuizStateNotifier();
 });
 
 //! the get quiz by ID provider
@@ -42,13 +47,18 @@ final getAllQuizzesProvider = StreamProvider((ref) {
 });
 
 //! the get confirmed quizzes provider
-final getConfirmedQuizzesProvider = StreamProvider.autoDispose((ref) {
+final getConfirmedQuizzesProvider = StreamProvider((ref) {
   final quizController = ref.watch(quizControllerProvider.notifier);
   return quizController.getConfirmedQuizzes();
 });
 
+final getQuizzesDraftsProvider = StreamProvider((ref) {
+  final quizController = ref.watch(quizControllerProvider.notifier);
+  return quizController.getQuizDrafts();
+});
+
 //! the get all quizzes joined provider
-final getAllQuizzesjoinedProvider = StreamProvider.autoDispose((ref) {
+final getAllQuizzesjoinedProvider = StreamProvider((ref) {
   final quizController = ref.watch(quizControllerProvider.notifier);
   return quizController.getQuizzesJoined();
 });

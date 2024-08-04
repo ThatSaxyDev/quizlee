@@ -52,7 +52,7 @@ class QuizQuestionsView extends ConsumerWidget {
                           questionsStream.when(
                             data: (questions) {
                               if (questions.isEmpty) {
-                                return const ErrorText(error: 'E no dey');
+                                return const ErrorText(error: 'There are no questions here yet');
                               }
 
                               return Column(

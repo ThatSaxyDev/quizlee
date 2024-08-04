@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -52,28 +53,29 @@ class _CreateQuizViewState extends ConsumerState<CreateQuizView> {
     }
   }
 
-  //! create quiz
-  void createQuiz({
-    required WidgetRef ref,
-    required String title,
-    required String description,
-    required DateTime date,
-    required String time,
-  }) {
-    ref.read(quizControllerProvider.notifier).createQuiz(
-          context: context,
-          title: title,
-          description: description,
-          date: date,
-          time: time,
-          image: image,
-          isPublic: true,
-        );
-  }
+  // //! create quiz
+  // void createQuiz({
+  //   required WidgetRef ref,
+  //   required String title,
+  //   required String description,
+  //   required DateTime date,
+  //   required String time,
+  // }) {
+  //   ref.read(quizControllerProvider.notifier).createQuiz(
+  //         context: context,
+  //         title: title,
+  //         description: description,
+  //         date: date,
+  //         time: time,
+  //         image: image,
+  //         isPublic: true,
+  //       );
+  // }
 
   @override
   Widget build(BuildContext context) {
     final isLoading = ref.watch(loadingStateControllerProvider);
+    final quizState = ref.watch(quizStateNotifierProvider);
     return Scaffold(
       backgroundColor: Pallete.backgroundBlue,
       body: isLoading
@@ -223,32 +225,38 @@ class _CreateQuizViewState extends ConsumerState<CreateQuizView> {
                               //!
                               68.sbH,
                               12.sbH,
-                              ClickButton(
-                                onTap: () {
-                                  if (image != null &&
-                                      _titleController.text.isNotEmpty &&
-                                      _descriptionController.text.isNotEmpty &&
-                                      date.isNotEmpty &&
-                                      time.isNotEmpty) {
-                                    ref
-                                        .read(quizControllerProvider.notifier)
-                                        .createQuiz(
-                                          context: context,
-                                          title: _titleController.text.trim(),
-                                          description: _descriptionController
-                                              .text
-                                              .trim(),
-                                          date: datee!,
-                                          time: time,
-                                          image: image,
-                                          isPublic: true,
-                                        );
-                                  } else {
-                                    showSnackBar(context, 'Fill');
-                                  }
-                                },
-                                text: AppTexts.continueToAddQuestions,
-                              ),
+                              quizState.isLoading
+                                  ? const Center(child: CupertinoActivityIndicator())
+                                  : ClickButton(
+                                      isActive: !quizState.isLoading,
+                                      onTap: () {
+                                        if (image != null &&
+                                            _titleController.text.isNotEmpty &&
+                                            _descriptionController
+                                                .text.isNotEmpty &&
+                                            date.isNotEmpty &&
+                                            time.isNotEmpty) {
+                                          ref
+                                              .read(quizStateNotifierProvider
+                                                  .notifier)
+                                              .createQuiz(
+                                                context: context,
+                                                title: _titleController.text
+                                                    .trim(),
+                                                description:
+                                                    _descriptionController.text
+                                                        .trim(),
+                                                date: datee!,
+                                                time: time,
+                                                image: image,
+                                                isPublic: true,
+                                              );
+                                        } else {
+                                          showSnackBar(context, 'Fill');
+                                        }
+                                      },
+                                      text: AppTexts.continueToAddQuestions,
+                                    ),
                               40.sbH,
                             ],
                           ),

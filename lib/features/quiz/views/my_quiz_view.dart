@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:quizlee/features/home/widgets/game_card.dart';
 import 'package:quizlee/features/home/widgets/upcoming_game_card.dart';
 import 'package:quizlee/features/quiz/providers/quiz_providers.dart';
 import 'package:quizlee/theme/palette.dart';
@@ -23,6 +24,7 @@ class _MyQuizViewState extends ConsumerState<MyQuizView> {
 
   @override
   Widget build(BuildContext context) {
+    final draftQuizzesStream = ref.watch(getQuizzesDraftsProvider);
     // final confirmedQuizzesStream = ref.watch(getConfirmedQuizzesProvider);
     // final joinedQuizzesStream = ref.watch(getAllQuizzesjoinedProvider);
     return Scaffold(
@@ -52,7 +54,7 @@ class _MyQuizViewState extends ConsumerState<MyQuizView> {
                           //       return Column(
                           //         children: [
                           //           200.sbH,
-                          //           Text('Empty'),
+                          //           const Text('Empty'),
                           //         ],
                           //       );
                           //     }
@@ -117,8 +119,43 @@ class _MyQuizViewState extends ConsumerState<MyQuizView> {
                 ),
 
                 //! drafts
-                const Center(
-                  child: Text('drafts'),
+                SizedBox(
+                  height: height(context),
+                  width: width(context),
+                  child: SingleChildScrollView(
+                    child: Padding(
+                      padding: 20.padH,
+                      child: Column(
+                        children: [
+                          164.sbH,
+                          draftQuizzesStream.when(
+                            data: (createdQuizzes) {
+                              if (createdQuizzes.isEmpty) {
+                                return Column(
+                                  children: [
+                                    200.sbH,
+                                    const Text('There are no drafts'),
+                                  ],
+                                );
+                              }
+
+                              return Column(
+                                children: List.generate(
+                                  createdQuizzes.length,
+                                  (index) => GameCard(
+                                    quiz: createdQuizzes[index],
+                                  ),
+                                ),
+                              );
+                            },
+                            error: (error, stactrace) =>
+                                ErrorText(error: error.toString()),
+                            loading: () => const Loader(),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
                 ),
               ],
             ),
