@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
+import 'package:quizlee/core/type_defs.dart';
 import 'package:quizlee/features/auth/controller/auth_controller.dart';
 import 'package:quizlee/features/home/widgets/upcoming_game_card.dart';
 import 'package:quizlee/features/quiz/providers/quiz_providers.dart';
@@ -11,6 +12,7 @@ import 'package:quizlee/router.dart';
 import 'package:quizlee/theme/palette.dart';
 import 'package:quizlee/utils/app_constants.dart';
 import 'package:quizlee/utils/app_texts.dart';
+import 'package:quizlee/utils/banner.dart';
 import 'package:quizlee/utils/error_text.dart';
 import 'package:quizlee/utils/loader.dart';
 import 'package:quizlee/utils/snack_bar.dart';
@@ -109,7 +111,11 @@ class _HomeViewState extends ConsumerState<HomeView> {
                                   if (_codeController.text.length == 6) {
                                     checkIfQuizRoomExists(ref: ref);
                                   } else {
-                                    showSnackBar(context, 'Enter valid code');
+                                    showBanner(
+                                      context: context,
+                                      theMessage: 'Enter valid code',
+                                      theType: NotificationType.failure,
+                                    );
                                   }
                                 },
                                 splashColor: Colors.transparent,
