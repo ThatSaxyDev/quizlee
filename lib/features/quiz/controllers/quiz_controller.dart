@@ -4,12 +4,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:quizlee/core/failure.dart';
 import 'package:quizlee/core/providers/storage_repository_provider.dart';
+import 'package:quizlee/core/type_defs.dart';
 import 'package:quizlee/features/auth/controller/auth_controller.dart';
 import 'package:quizlee/features/quiz/repositories/quiz_repository.dart';
 import 'package:quizlee/features/quiz/widgets/join_quiz_bottom_sheet.dart';
 import 'package:quizlee/models/question_model.dart';
 import 'package:quizlee/models/quiz_model.dart';
 import 'package:quizlee/router.dart';
+import 'package:quizlee/utils/banner.dart';
 import 'package:quizlee/utils/nav.dart';
 import 'package:quizlee/utils/snack_bar.dart';
 import 'package:quizlee/utils/utils.dart';
@@ -53,7 +55,11 @@ class QuizController extends StateNotifier<bool> {
     );
     res.fold(
       (l) {
-        showSnackBar(context, l.message);
+        showBanner(
+          context: context,
+          theMessage: l.message,
+          theType: NotificationType.failure,
+        );
         onError!(l);
         return;
       },
@@ -82,11 +88,21 @@ class QuizController extends StateNotifier<bool> {
 
     ress.fold(
       (l) {
-        showSnackBar(context, l.message);
+        showBanner(
+          context: context,
+          theMessage: l.message,
+          theType: NotificationType.failure,
+        );
+
         onError!(l);
       },
       (r) {
-        showSnackBar(context, 'Quiz created');
+        showBanner(
+          context: context,
+          theMessage: 'Quiz created',
+          theType: NotificationType.success,
+        );
+
         nav(destination: '/quiz-questions/$quizId', context: context);
         onSuccess!('');
       },
@@ -103,8 +119,16 @@ class QuizController extends StateNotifier<bool> {
         quiz: quiz, quizRoomId: quizRoomId);
 
     res.fold(
-      (l) => showSnackBar(context, l.message),
-      (r) => showSnackBar(context, 'done'),
+      (l) => showBanner(
+        context: context,
+        theMessage: l.message,
+        theType: NotificationType.failure,
+      ),
+      (r) => showBanner(
+        context: context,
+        theMessage: 'Done',
+        theType: NotificationType.success,
+      ),
     );
   }
 
@@ -117,7 +141,11 @@ class QuizController extends StateNotifier<bool> {
         await _quizRepository.checkIfQuizRoomExists(quizRoomId: quizRoomId);
 
     res.fold(
-      (l) => showSnackBar(context, l.message),
+      (l) => showBanner(
+        context: context,
+        theMessage: l.message,
+        theType: NotificationType.failure,
+      ),
       (r) {
         r == true
             ? showModalBottomSheet(
@@ -133,7 +161,11 @@ class QuizController extends StateNotifier<bool> {
                   ],
                 ),
               )
-            : showSnackBar(context, 'not found');
+            : showBanner(
+                context: context,
+                theMessage: 'Not found',
+                theType: NotificationType.failure,
+              );
       },
     );
   }
@@ -148,8 +180,16 @@ class QuizController extends StateNotifier<bool> {
     final res = await _quizRepository.joinQuizRoom(quiz: quiz, uid: user.uid);
 
     res.fold(
-      (l) => showSnackBar(context, l.message),
-      (r) => showSnackBar(context, 'Joined'),
+      (l) => showBanner(
+        context: context,
+        theMessage: l.message,
+        theType: NotificationType.failure,
+      ),
+      (r) => showBanner(
+        context: context,
+        theMessage: 'Joined',
+        theType: NotificationType.success,
+      ),
     );
   }
 
@@ -189,9 +229,17 @@ class QuizController extends StateNotifier<bool> {
     state = false;
 
     res.fold(
-      (l) => showSnackBar(context, l.message),
+      (l) => showBanner(
+        context: context,
+        theMessage: l.message,
+        theType: NotificationType.failure,
+      ),
       (r) {
-        showSnackBar(context, 'Question added');
+        showBanner(
+          context: context,
+          theMessage: 'Question Added',
+          theType: NotificationType.success,
+        );
         goBack(context);
       },
     );
@@ -249,9 +297,17 @@ class QuizController extends StateNotifier<bool> {
     state = false;
 
     res.fold(
-      (l) => showSnackBar(context, l.message),
+      (l) => showBanner(
+        context: context,
+        theMessage: l.message,
+        theType: NotificationType.failure,
+      ),
       (r) {
-        showSnackBar(context, 'Edited');
+        showBanner(
+          context: context,
+          theMessage: 'Edited',
+          theType: NotificationType.failure,
+        );
         goBack(context);
       },
     );
@@ -264,9 +320,17 @@ class QuizController extends StateNotifier<bool> {
   }) async {
     final res = await _quizRepository.deleteQuestion(question: question);
     res.fold(
-      (l) => showSnackBar(context, l.message),
+      (l) => showBanner(
+        context: context,
+        theMessage: l.message,
+        theType: NotificationType.failure,
+      ),
       (r) {
-        showSnackBar(context, 'Deleted');
+        showBanner(
+          context: context,
+          theMessage: 'Deleted',
+          theType: NotificationType.info,
+        );
         goBack(context);
       },
     );
