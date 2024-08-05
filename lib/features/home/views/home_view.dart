@@ -15,7 +15,6 @@ import 'package:quizlee/utils/app_texts.dart';
 import 'package:quizlee/utils/banner.dart';
 import 'package:quizlee/utils/error_text.dart';
 import 'package:quizlee/utils/loader.dart';
-import 'package:quizlee/utils/snack_bar.dart';
 import 'package:quizlee/utils/app_extensions.dart';
 import 'package:quizlee/utils/widgets/click_button.dart';
 import 'package:quizlee/utils/widgets/myicon.dart';
