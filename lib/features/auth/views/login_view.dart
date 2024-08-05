@@ -8,8 +8,8 @@ import 'package:quizlee/utils/app_extensions.dart';
 
 import '../../../theme/palette.dart';
 
-class LoginScreen extends ConsumerWidget {
-  const LoginScreen({super.key});
+class LoginView extends ConsumerWidget {
+  const LoginView({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

@@ -16,7 +16,7 @@ void nav({required String destination, required BuildContext context}) {
 final loggedOutRoute = RouteMap(
   routes: {
     '/': (_) => const MaterialPage(
-          child: LoginScreen(),
+          child: LoginView(),
         ),
   },
   onUnknownRoute: (path) => const MaterialPage(
