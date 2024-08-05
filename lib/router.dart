@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:quizlee/features/auth/views/login_screen.dart';
+import 'package:quizlee/features/auth/views/login_view.dart';
 import 'package:quizlee/features/base_nav/dummy_home.dart';
 import 'package:quizlee/features/base_nav/dummy_home2.dart';
 import 'package:quizlee/features/base_nav/views/base_nav_wrapper.dart';
