@@ -13,7 +13,6 @@ import 'package:quizlee/models/quiz_model.dart';
 import 'package:quizlee/router.dart';
 import 'package:quizlee/utils/banner.dart';
 import 'package:quizlee/utils/nav.dart';
-import 'package:quizlee/utils/snack_bar.dart';
 import 'package:quizlee/utils/utils.dart';
 import 'package:uuid/uuid.dart';
 
