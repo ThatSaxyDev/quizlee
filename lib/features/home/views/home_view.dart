@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:phosphor_flutter/phosphor_flutter.dart';
 import 'package:quizlee/core/type_defs.dart';
 import 'package:quizlee/features/auth/controller/auth_controller.dart';
 import 'package:quizlee/features/home/widgets/upcoming_game_card.dart';
 import 'package:quizlee/features/quiz/providers/quiz_providers.dart';
-import 'package:quizlee/features/quiz/widgets/join_quiz_bottom_sheet.dart';
 import 'package:quizlee/models/user_model.dart';
 import 'package:quizlee/router.dart';
 import 'package:quizlee/theme/palette.dart';

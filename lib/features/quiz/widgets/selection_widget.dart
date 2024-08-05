@@ -16,7 +16,7 @@ class SelectionWidget extends StatelessWidget {
   final bool? isDate;
   final void Function()? onTap;
   const SelectionWidget({
-    Key? key,
+    super.key,
     this.height,
     this.overallheight,
     this.width,
@@ -25,7 +25,7 @@ class SelectionWidget extends StatelessWidget {
     required this.text,
     this.isDate = true,
     this.onTap,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

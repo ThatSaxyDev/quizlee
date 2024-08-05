@@ -9,9 +9,9 @@ import 'package:quizlee/utils/widgets/myicon.dart';
 class PositionWidget extends StatelessWidget {
   final String icon;
   const PositionWidget({
-    Key? key,
+    super.key,
     required this.icon,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

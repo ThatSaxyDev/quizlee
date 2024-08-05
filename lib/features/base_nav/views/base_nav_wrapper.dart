@@ -6,7 +6,6 @@ import 'package:quizlee/features/home/views/home_view.dart';
 import 'package:quizlee/features/leaderboards/views/leaderboard_view.dart';
 import 'package:quizlee/features/profile/views/profile_view.dart';
 import 'package:quizlee/features/quiz/views/my_quiz_view.dart';
-import 'package:quizlee/features/quiz/views/temporary_quiz_view.dart';
 import 'package:quizlee/theme/palette.dart';
 
 class BaseNavWrapper extends ConsumerStatefulWidget {

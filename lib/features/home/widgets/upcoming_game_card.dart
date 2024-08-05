@@ -215,10 +215,10 @@ class UpcomingCardChip extends StatelessWidget {
   final String icon;
 
   const UpcomingCardChip({
-    Key? key,
+    super.key,
     required this.text,
     required this.icon,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

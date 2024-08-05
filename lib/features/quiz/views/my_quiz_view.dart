@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:quizlee/features/home/widgets/game_card.dart';
-import 'package:quizlee/features/home/widgets/upcoming_game_card.dart';
 import 'package:quizlee/features/quiz/providers/quiz_providers.dart';
 import 'package:quizlee/theme/palette.dart';
 import 'package:quizlee/utils/app_constants.dart';

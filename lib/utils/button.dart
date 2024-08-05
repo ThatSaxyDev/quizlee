@@ -19,7 +19,7 @@ class BButton extends StatelessWidget {
   final bool isText;
   final EdgeInsetsGeometry? padding;
   const BButton({
-    Key? key,
+    super.key,
     this.height,
     this.width,
     this.radius,
@@ -31,7 +31,7 @@ class BButton extends StatelessWidget {
     this.text,
     this.isText = true,
     this.padding,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -84,7 +84,7 @@ class TransparentButton extends StatelessWidget {
   final Color? backgroundColor;
   final Color? textColor;
   const TransparentButton({
-    Key? key,
+    super.key,
     this.height,
     this.width,
     this.radius,
@@ -95,7 +95,7 @@ class TransparentButton extends StatelessWidget {
     this.isText = true,
     this.backgroundColor,
     this.textColor,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -199,14 +199,14 @@ class TTransparentButton extends StatelessWidget {
   final Color color;
   final Widget child;
   const TTransparentButton({
-    Key? key,
+    super.key,
     this.height,
     this.width,
     this.padding,
     required this.onTap,
     required this.color,
     required this.child,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

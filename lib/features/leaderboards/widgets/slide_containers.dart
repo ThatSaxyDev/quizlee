@@ -5,9 +5,9 @@ import 'package:flutter/material.dart';
 class SlideContainer3 extends StatefulWidget {
   final Widget child;
   const SlideContainer3({
-    Key? key,
+    super.key,
     required this.child,
-  }) : super(key: key);
+  });
 
   @override
   State<SlideContainer3> createState() => _SlideContainer3State();
@@ -58,9 +58,9 @@ class _SlideContainer3State extends State<SlideContainer3>
 class SlideContainer2 extends StatefulWidget {
   final Widget child;
   const SlideContainer2({
-    Key? key,
+    super.key,
     required this.child,
-  }) : super(key: key);
+  });
 
   @override
   State<SlideContainer2> createState() => _SlideContainer2State();
@@ -111,9 +111,9 @@ class _SlideContainer2State extends State<SlideContainer2>
 class SlideContainer1 extends StatefulWidget {
   final Widget child;
   const SlideContainer1({
-    Key? key,
+    super.key,
     required this.child,
-  }) : super(key: key);
+  });
 
   @override
   State<SlideContainer1> createState() => _SlideContainer1State();
