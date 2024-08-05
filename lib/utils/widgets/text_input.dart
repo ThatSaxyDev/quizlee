@@ -34,7 +34,7 @@ class TextInputBox extends StatelessWidget {
   final void Function()? onEditingComplete;
   final TextCapitalization textCapitalization;
   const TextInputBox({
-    Key? key,
+    super.key,
     this.isExtended,
     this.maxLines,
     this.height,
@@ -62,7 +62,7 @@ class TextInputBox extends StatelessWidget {
     this.maxLength,
     this.onEditingComplete,
     this.textCapitalization = TextCapitalization.none,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -182,7 +182,7 @@ class TextInputBox2 extends StatelessWidget {
   final void Function()? onEditingComplete;
   final TextCapitalization textCapitalization;
   const TextInputBox2({
-    Key? key,
+    super.key,
     // this.height,
     this.width,
     required this.hintText,
@@ -207,7 +207,7 @@ class TextInputBox2 extends StatelessWidget {
     this.maxLength,
     this.onEditingComplete,
     this.textCapitalization = TextCapitalization.none,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

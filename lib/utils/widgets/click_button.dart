@@ -12,12 +12,12 @@ class ClickButton extends StatefulWidget {
   final String text;
   final bool? isActive;
   const ClickButton({
-    Key? key,
+    super.key,
     this.onTap,
     this.width,
     required this.text,
     this.isActive = true,
-  }) : super(key: key);
+  });
 
   @override
   State<ClickButton> createState() => _ClickButtonState();

@@ -15,7 +15,7 @@ class GButton extends ConsumerWidget {
   final Widget item;
   final bool isFromLogin;
   const GButton({
-    Key? key,
+    super.key,
     // required this.height,
     // required this.width,
     this.padding = 30,
@@ -24,7 +24,7 @@ class GButton extends ConsumerWidget {
     // required this.onTap,
 
     required this.item,
-  }) : super(key: key);
+  });
 
   void signInWithGoogle(BuildContext context, WidgetRef ref) {
     ref.read(authControllerProvider.notifier).signInWithGoogle(context);
@@ -32,7 +32,6 @@ class GButton extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final currentTheme = ref.watch(themeNotifierProvider);
     return SizedBox(
       height: 50.h,
       // width: width,

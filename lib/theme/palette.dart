@@ -55,7 +55,6 @@ class Pallete {
     // textTheme: ThemeData.dark().textTheme.apply(
     //       fontFamily: 'Sk-Modernist',
     //     ),
-    useMaterial3: true,
     scaffoldBackgroundColor: blackColor,
     cardColor: greyColor,
     appBarTheme: const AppBarTheme(
@@ -76,7 +75,6 @@ class Pallete {
     // textTheme: ThemeData.light().textTheme.apply(
     //       fontFamily: 'Sk-Modernist',
     //     ),
-    useMaterial3: true,
     scaffoldBackgroundColor: whiteColor,
     cardColor: greyColor,
     appBarTheme: const AppBarTheme(
