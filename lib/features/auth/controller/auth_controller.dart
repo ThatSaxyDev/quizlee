@@ -2,8 +2,10 @@ import 'dart:developer';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:quizlee/core/type_defs.dart';
 import 'package:quizlee/features/auth/repositories/auth_repository.dart';
 import 'package:quizlee/models/user_model.dart';
+import 'package:quizlee/utils/banner.dart';
 import 'package:quizlee/utils/snack_bar.dart';
 
 final userProvider = StateProvider<UserModel?>((ref) => null);
@@ -42,7 +44,11 @@ class AuthController extends StateNotifier<bool> {
     user.fold(
       (l) {
         log(l.message);
-        showSnackBar(context, l.message);
+        showBanner(
+          context: context,
+          theMessage: l.message,
+          theType: NotificationType.failure,
+        );
       },
       (userModel) =>
           _ref.read(userProvider.notifier).update((state) => userModel),
