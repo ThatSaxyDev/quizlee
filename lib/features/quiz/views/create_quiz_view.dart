@@ -6,11 +6,13 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
 import 'package:quizlee/core/providers/loading_state.dart';
+import 'package:quizlee/core/type_defs.dart';
 import 'package:quizlee/features/quiz/providers/quiz_providers.dart';
 import 'package:quizlee/features/quiz/widgets/selection_widget.dart';
 import 'package:quizlee/theme/palette.dart';
 import 'package:quizlee/utils/app_constants.dart';
 import 'package:quizlee/utils/app_texts.dart';
+import 'package:quizlee/utils/banner.dart';
 import 'package:quizlee/utils/convert_time.dart';
 import 'package:quizlee/utils/loader.dart';
 import 'package:quizlee/utils/nav.dart';
@@ -226,7 +228,8 @@ class _CreateQuizViewState extends ConsumerState<CreateQuizView> {
                               68.sbH,
                               12.sbH,
                               quizState.isLoading
-                                  ? const Center(child: CupertinoActivityIndicator())
+                                  ? const Center(
+                                      child: CupertinoActivityIndicator())
                                   : ClickButton(
                                       isActive: !quizState.isLoading,
                                       onTap: () {
@@ -252,7 +255,12 @@ class _CreateQuizViewState extends ConsumerState<CreateQuizView> {
                                                 isPublic: true,
                                               );
                                         } else {
-                                          showSnackBar(context, 'Fill');
+                                          showBanner(
+                                            context: context,
+                                            theMessage:
+                                                'All fields are required',
+                                            theType: NotificationType.failure,
+                                          );
                                         }
                                       },
                                       text: AppTexts.continueToAddQuestions,
