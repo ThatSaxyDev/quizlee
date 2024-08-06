@@ -23,7 +23,7 @@ class LoginView extends ConsumerWidget {
             : Column(
                 children: [
                   130.sbH,
-                  'Q'.txt30(fontWeight: FontWeight.w600).alignCenter(),
+                  'QuizLee'.txt30(fontWeight: FontWeight.w600).alignCenter(),
                   150.sbH,
                   GButton(
                     padding: 10.h,

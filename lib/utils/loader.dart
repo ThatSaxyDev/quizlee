@@ -31,7 +31,7 @@ class Loader extends ConsumerWidget {
         // child: CircularProgressIndicator(
         //   color: Pallete.blueColor,
         // ),
-        child: LoadingAnimationWidget.inkDrop(
+        child: LoadingAnimationWidget.hexagonDots(
           color: Pallete.textGreen,
           size: 60.h,
         ),
