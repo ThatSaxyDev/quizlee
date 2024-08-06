@@ -110,7 +110,7 @@ class _HomeViewState extends ConsumerState<HomeView> {
                                   } else {
                                     showBanner(
                                       context: context,
-                                      theMessage: 'Enter valid code',
+                                      theMessage: 'Please enter valid code',
                                       theType: NotificationType.failure,
                                     );
                                   }
